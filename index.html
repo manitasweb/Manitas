@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manitas - Servicios profesionales de reparaciones y mantenimiento.">
+  <title>Manitas | Reparaciones y mantenimiento</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #f59e0b;
+      --primary-dark: #d97706;
+      --dark: #111827;
+      --dark-2: #1f2937;
+      --light: #f9fafb;
+      --gray: #6b7280;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(17, 24, 39, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: white;
+      font-size: 27px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(17,24,39,.82), rgba(17,24,39,.88)),
+        radial-gradient(circle at center, #374151, #111827);
+      display: flex;
+      align-items: center;
+      padding: 120px 25px 80px;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 1150px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .hero-text {
+      max-width: 700px;
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 78px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      color: #d1d5db;
+      font-size: 20px;
+      max-width: 620px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: .3s;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #111827;
+    }
+
+    .btn-primary:hover {
+      background: #fbbf24;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--dark);
+    }
+
+    /* GENERAL */
+    section {
+      padding: 90px 25px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-title span {
+      color: var(--primary-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      margin: 10px 0;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      max-width: 650px;
+      margin: auto;
+    }
+
+    /* SERVICES */
+    .services {
+      background: var(--light);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 35px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.06);
+      transition: .3s;
+      border: 1px solid #eee;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.1);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fef3c7;
+      border-radius: 12px;
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .service-card p {
+      color: var(--gray);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: var(--dark);
+      color: white;
+      padding: 50px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-box::after {
+      content: "🔧";
+      position: absolute;
+      right: -15px;
+      bottom: -35px;
+      font-size: 150px;
+      opacity: .08;
+    }
+
+    .about-box h3 {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .about-text h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .features {
+      list-style: none;
+      margin-top: 25px;
+    }
+
+    .features li {
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--primary-dark);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    /* CTA */
+    .cta {
+      background: var(--primary);
+      text-align: center;
+      padding: 75px 25px;
+    }
+
+    .cta h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+
+    .cta .btn {
+      background: var(--dark);
+      color: white;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    .contact-info h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .contact-info > p {
+      color: var(--gray);
+      margin-bottom: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: #fef3c7;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+    }
+
+    .contact-item strong {
+      display: block;
+    }
+
+    .contact-item span {
+      color: var(--gray);
+    }
+
+    form {
+      background: white;
+      padding: 35px;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.06);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    form .btn {
+      width: 100%;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #9ca3af;
+      text-align: center;
+      padding: 25px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* WHATSAPP */
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.25);
+      z-index: 999;
+      transition: .3s;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+
+    /* MODERN VISUAL ENHANCEMENTS */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 25%, rgba(245,158,11,.20), transparent 30%),
+        radial-gradient(circle at 15% 85%, rgba(59,130,246,.10), transparent 28%),
+        linear-gradient(135deg, #0b1220 0%, #111827 55%, #1f2937 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -180px;
+      top: 100px;
+      border: 1px solid rgba(245,158,11,.22);
+      border-radius: 50%;
+      box-shadow: 0 0 0 55px rgba(245,158,11,.035), 0 0 0 110px rgba(245,158,11,.025);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .tag {
+      padding: 8px 14px;
+      border: 1px solid rgba(245,158,11,.35);
+      border-radius: 999px;
+      background: rgba(245,158,11,.08);
+      font-size: 13px;
+    }
+    .hero h1 { letter-spacing: -2px; }
+    .btn { border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,.10); }
+    .btn-primary { box-shadow: 0 10px 24px rgba(245,158,11,.22); }
+    .service-card { border-radius: 18px; box-shadow: 0 10px 35px rgba(17,24,39,.06); }
+    .service-card:hover { transform: translateY(-7px); border-color: rgba(245,158,11,.35); }
+    .service-icon { border-radius: 14px; }
+    .about-box { box-shadow: 0 18px 45px rgba(17,24,39,.14); }
+    .cta { position: relative; overflow: hidden; }
+    .cta::after {
+      content: "⚒";
+      position: absolute;
+      right: 7%;
+      top: 50%;
+      transform: translateY(-50%) rotate(-12deg);
+      font-size: 150px;
+      opacity: .08;
+    }
+    form { border: 1px solid #eef0f3; }
+    .whatsapp { box-shadow: 0 10px 28px rgba(37,211,102,.28); }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--dark);
+        flex-direction: column;
+        padding: 25px;
+        gap: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .service-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box {
+        padding: 35px;
+      }
+
+      .hero {
+        min-height: 90vh;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .section-title h2,
+      .about-text h2,
+      .contact-info h2,
+      .cta h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-container">
+      <a href="#inicio" class="logo">Mani<span>tas</span></a>
+
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Sobre nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="tag">🔧 Reparaciones profesionales</div>
+
+        <h1>
+          Soluciones para tu hogar.<br>
+          <span>Sin complicaciones.</span>
+        </h1>
+
+        <p>
+          Reparaciones, mantenimiento y pequeños trabajos para tu hogar, con un servicio profesional y cercano.
+          Presupuestos claros, atención rápida y trabajo bien hecho.
+        </p>
+
+        <div class="buttons">
+          <a href="#contacto" class="btn btn-primary">
+            Solicitar reparación
+          </a>
+
+          <a href="#servicios" class="btn btn-outline">
+            Ver servicios
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services" id="servicios">
+    <div class="container">
+
+      <div class="section-title">
+        <span>Qué hacemos</span>
+        <h2>Nuestros servicios</h2>
+        <p>
+          Nos encargamos de esos trabajos que necesitas hacer en casa,
+          de forma rápida y profesional.
+        </p>
+      </div>
+
+      <div class="service-grid">
+
+        <div class="service-card">
+          <div class="service-icon">🔨</div>
+          <h3>Montaje y reparación</h3>
+          <p>
+            Montaje de muebles, estanterías, puertas y todo tipo de
+            pequeños trabajos del hogar.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🚿</div>
+          <h3>Fontanería</h3>
+          <p>
+            Reparación de grifos, fugas, tuberías, desagües y pequeños
+            problemas de fontanería.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💡</div>
+          <h3>Electricidad</h3>
+          <p>
+            Instalación y reparación de enchufes, lámparas, interruptores
+            y otros pequeños trabajos eléctricos.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Pintura</h3>
+          <p>
+            Pintura de habitaciones, retoques, paredes y trabajos de
+            mantenimiento.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🪑</div>
+          <h3>Muebles</h3>
+          <p>
+            Montaje, desmontaje, reparación y ajustes de muebles para
+            tu hogar.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🛠️</div>
+          <h3>Mantenimiento</h3>
+          <p>
+            Solucionamos pequeños desperfectos y mantenemos tu vivienda
+            en perfecto estado.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="nosotros">
+    <div class="container">
+
+      <div class="about-grid">
+
+        <div class="about-box">
+          <h3>Manitas</h3>
+          <p>
+            Tu profesional de confianza para reparaciones y mantenimiento
+            del hogar.
+          </p>
+        </div>
+
+        <div class="about-text">
+          <h2>Un trabajo bien hecho, a la primera.</h2>
+
+          <p>
+            En Manitas nos dedicamos a ayudarte con todos esos pequeños
+            trabajos y reparaciones que aparecen en el día a día.
+          </p>
+
+          <p>
+            Ofrecemos un servicio cercano, transparente y profesional,
+            adaptado a las necesidades de cada cliente.
+          </p>
+
+          <ul class="features">
+            <li>Presupuestos claros</li>
+            <li>Atención personalizada</li>
+            <li>Trabajo profesional</li>
+            <li>Rapidez y puntualidad</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>¿Necesitas una reparación?</h2>
+      <p>Cuéntanos qué necesitas y te ayudaremos.</p>
+
+      <a href="#contacto" class="btn">
+        Pedir presupuesto
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="container">
+
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <h2>Hablemos</h2>
+
+          <p>
+            Explícanos qué necesitas reparar y nos pondremos en contacto
+            contigo.
+          </p>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <strong>Teléfono</strong>
+              <span>+34 612 516 055</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div>
+              <strong>WhatsApp</strong>
+              <span>Respuesta rápida</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Zona de servicio</strong>
+              <span>Tu ciudad y alrededores</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              placeholder="Tu nombre"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input
+              type="tel"
+              id="telefono"
+              placeholder="Tu teléfono"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="servicio">Servicio</label>
+
+            <select id="servicio">
+              <option>Selecciona un servicio</option>
+              <option>Montaje y reparación</option>
+              <option>Fontanería</option>
+              <option>Electricidad</option>
+              <option>Pintura</option>
+              <option>Muebles</option>
+              <option>Mantenimiento</option>
+              <option>Otro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">¿Qué necesitas?</label>
+
+            <textarea
+              id="mensaje"
+              placeholder="Describe brevemente la reparación..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Solicitar presupuesto
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2026 <strong>Manitas</strong>. Todos los derechos reservados.
+    </p>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a
+    class="whatsapp"
+    href="https://wa.me/34612516055"
+    target="_blank"
+    aria-label="Contactar por WhatsApp"
+  >
+    💬
+  </a>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    // Cerrar menú al pulsar un enlace
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+
+    // Formulario
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const telefono = document.getElementById("telefono").value;
+      const servicio = document.getElementById("servicio").value;
+      const mensaje = document.getElementById("mensaje").value;
+
+      const texto = encodeURIComponent(
+        `Hola, soy ${nombre}.\n\n` +
+        `Teléfono: ${telefono}\n` +
+        `Servicio: ${servicio}\n\n` +
+        `Necesito: ${mensaje}`
+      );
+
+      // CAMBIA ESTE NÚMERO POR TU WHATSAPP
+      const numero = "34612516055";
+
+      window.open(
+        `https://wa.me/${numero}?text=${texto}`,
+        "_blank"
+      );
+    });
+  </script>
+
+</body>
+</html>
